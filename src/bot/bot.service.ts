@@ -1,18 +1,16 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-
+import { config } from 'dotenv';
+config();
 @Injectable()
 export class BotService implements OnModuleInit {
   onModuleInit() {
     this.botMessage();
   }
-  // OnModuleInit() {
-  //   this.botMessage();
-  // }
   botMessage() {
     process.env.NTBA_FIX_319 = '1';
     const TelegramBot = require('node-telegram-bot-api');
-
-    const token = '6890218667:AAEk_wmMeDjd4Sw2wI-aWQ_AzdEqeOjLuyQ';
+    console.log(process.env.TELEGRAM_TOKEN);
+    const token = process.env.TELEGRAM_TOKEN;
 
     const bot = new TelegramBot(token, { polling: true });
 
